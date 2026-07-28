@@ -5,7 +5,7 @@
 // Credits:
 // - C4ndyF1sh / ZeroCalories for the MaterialKit home-indicator target
 // - jailbreakdotparty / dirtyZero for the original page-zeroing idea
-// - zeroxjf for the Cyanide/Lightsaber JS port
+// - 0xjohnny for the Cyanide/Lightsaber JS port
 
 (function () {
     "use strict";

@@ -1,6 +1,6 @@
 {
-  "repoName": "zeroxjf",
-  "author": "zeroxjf",
+  "repoName": "0xjohnny",
+  "author": "0xjohnny",
   "tweaks": [
     {
       "id": "lightsaber.hide-dock",
@@ -9,16 +9,16 @@
       "version": "1.0.5",
       "author": "@MinePlayer16",
       "symbol": "dock.rectangle",
-      "scriptURL": "https://zeroxjf.github.io/hide_dock.js?v=5"
+      "scriptURL": "https://0xjohnnydev.github.io/hide_dock.js?v=5"
     },
     {
       "id": "lightsaber.hide-homebar",
       "name": "Hide Home Bar",
       "description": "Hides the bottom home indicator. Respring after applying so SpringBoard refreshes the asset cache.",
       "version": "1.0.2",
-      "author": "zeroxjf",
+      "author": "0xjohnny",
       "symbol": "line.3.horizontal",
-      "scriptURL": "https://zeroxjf.github.io/hide_homebar.js?v=3"
+      "scriptURL": "https://0xjohnnydev.github.io/hide_homebar.js?v=3"
     },
     {
       "id": "lightsaber.dock-color",
@@ -27,7 +27,7 @@
       "version": "1.0.0",
       "author": "@MinePlayer16",
       "symbol": "paintpalette.fill",
-      "scriptURL": "https://zeroxjf.github.io/dock_color.js?v=1"
+      "scriptURL": "https://0xjohnnydev.github.io/dock_color.js?v=1"
     },
     {
       "id": "lightsaber.hide-search-pill",
@@ -36,7 +36,7 @@
       "version": "1.0.6",
       "author": "@MinePlayer16",
       "symbol": "magnifyingglass",
-      "scriptURL": "https://zeroxjf.github.io/hide_searchpill.js?v=7",
+      "scriptURL": "https://0xjohnnydev.github.io/hide_searchpill.js?v=7",
       "maxIOS": "18.x",
       "compatibilityNote": "Only tested on iOS 18 and below.",
       "unsupportedMessage": "Only tested on iOS 18 and below."
@@ -48,7 +48,7 @@
       "version": "1.0.0",
       "author": "@MinePlayer16",
       "symbol": "wind",
-      "scriptURL": "https://zeroxjf.github.io/floating_icons.js?v=1"
+      "scriptURL": "https://0xjohnnydev.github.io/floating_icons.js?v=1"
     },
     {
       "id": "lightsaber.dump-views",
@@ -57,7 +57,7 @@
       "version": "1.0.0",
       "author": "@MinePlayer16",
       "symbol": "ladybug.fill",
-      "scriptURL": "https://zeroxjf.github.io/dump-views.js?v=1"
+      "scriptURL": "https://0xjohnnydev.github.io/dump-views.js?v=1"
     }
   ]
 }

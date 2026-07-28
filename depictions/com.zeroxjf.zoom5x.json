@@ -8,7 +8,7 @@
       "views": [
         {
           "class": "DepictionMarkdownView",
-          "markdown": "**By zeroxjf** | 5x zoom for every iPhone\n\nAdds a **5x** zoom button to the Camera app, sitting right alongside the native 0.5x, 1x, 2x, and 3x buttons in the zoom platter. Tap it to jump straight to 5x zoom.",
+          "markdown": "**By 0xjohnny** | 5x zoom for every iPhone\n\nAdds a **5x** zoom button to the Camera app, sitting right alongside the native 0.5x, 1x, 2x, and 3x buttons in the zoom platter. Tap it to jump straight to 5x zoom.",
           "useSpacing": true
         },
         {
@@ -57,12 +57,12 @@
         {
           "class": "DepictionTableTextView",
           "title": "Developer",
-          "text": "zeroxjf"
+          "text": "0xjohnny"
         },
         {
           "class": "DepictionTableButtonView",
-          "title": "Follow zeroxjf on Twitter",
-          "action": "https://x.com/zeroxjf",
+          "title": "Follow 0xjohnny on Twitter",
+          "action": "https://x.com/0xjohnny",
           "openExternal": true,
           "tintColor": "#5B9FFF"
         }

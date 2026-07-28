@@ -8,7 +8,7 @@
       "views": [
         {
           "class": "DepictionMarkdownView",
-          "markdown": "**By zeroxjf** | The prodigal son of TypeCentury\n\nA system-wide typing indicator for iMessage that shows a sleek banner just below the notch or Dynamic Island whenever someone is typing to you.\n\n**Tap** the banner to jump straight into the conversation, or **swipe** to dismiss. Configurable via Settings with a built-in test button.",
+          "markdown": "**By 0xjohnny** | The prodigal son of TypeCentury\n\nA system-wide typing indicator for iMessage that shows a sleek banner just below the notch or Dynamic Island whenever someone is typing to you.\n\n**Tap** the banner to jump straight into the conversation, or **swipe** to dismiss. Configurable via Settings with a built-in test button.",
           "useSpacing": true
         },
         {
@@ -57,7 +57,7 @@
         {
           "class": "DepictionTableTextView",
           "title": "Developer",
-          "text": "zeroxjf"
+          "text": "0xjohnny"
         },
         {
           "class": "DepictionTableTextView",
@@ -66,8 +66,8 @@
         },
         {
           "class": "DepictionTableButtonView",
-          "title": "Follow zeroxjf on Twitter",
-          "action": "https://x.com/zeroxjf",
+          "title": "Follow 0xjohnny on Twitter",
+          "action": "https://x.com/0xjohnny",
           "openExternal": true,
           "tintColor": "#5B9FFF"
         }
