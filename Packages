@@ -96,3 +96,19 @@ Author: zeroxjf
 Name: Zoom5x
 Sileodepiction: https://zeroxjf.github.io/depictions/com.zeroxjf.zoom5x.json
 
+Package: me.tomt000.stageduo
+Version: 1.2+dynamicstagefix2
+Architecture: iphoneos-arm64
+Maintainer: tomt000
+Installed-Size: 4900
+Depends: mobilesubstrate (>= 0.9.5000), com.opa334.altlist, preferenceloader
+Filename: debs/me.tomt000.stageduo_1.2+dynamicstagefix2_iphoneos-arm64.deb
+Size: 3064016
+MD5sum: 250948468debc1cfad096b30b2da7fa7
+SHA1: b377203315fcbdd53268e9c79fd7c7ab06c7298b
+SHA256: d18e07c58d333f6c97cddcf62f5707178b20ad9e3e9f954465bfb66ac092ab05
+Section: Tweaks
+Description: Stage Manager Reimagined for iPhone
+Author: tomt000
+Name: Dynamic Stage
+
