@@ -127,15 +127,19 @@
       display: inline-flex;
       align-items: center;
       gap: 0.375rem;
-      padding: 0.4rem 0.75rem;
+      padding: 0.5rem 0.75rem;
+      border: 1px solid var(--border);
       border-radius: 6px;
       background: var(--accent);
       font-family: var(--font-mono);
       font-size: 0.76rem;
-      font-weight: 500;
-      transition: background 120ms ease;
+      font-weight: 600;
+      transition: background 120ms ease, border-color 120ms ease;
     }
-    .post-file-link:hover { background: var(--accent-strong); }
+    .post-file-link:hover {
+      background: var(--accent-strong);
+      border-color: var(--muted);
+    }
 
     .hero {
       margin-top: 2rem;
@@ -235,17 +239,31 @@
       line-height: 1.65;
       overflow-wrap: anywhere;
     }
-    .repo-link {
+    .post-body .repo-link {
       display: inline-flex;
       align-items: center;
-      gap: 0.35rem;
-      margin-top: 0.15rem;
-      font-family: var(--font-mono);
-      font-size: 0.78rem;
-      box-shadow: 0 1px 0 var(--border);
-      padding-bottom: 1px;
+      justify-content: space-between;
+      gap: 0.75rem;
+      margin-top: 0.35rem;
+      padding: 0.6rem 0.8rem;
+      border: 1px solid var(--border);
+      border-radius: 7px;
+      background: var(--accent);
+      font-size: 0.82rem;
+      font-weight: 600;
+      box-shadow: none;
+      transition: background 120ms ease, border-color 120ms ease;
     }
-    .repo-link:hover { box-shadow: 0 1px 0 var(--fg); }
+    .post-body .repo-link:hover {
+      background: var(--accent-strong);
+      border-color: var(--muted);
+      box-shadow: none;
+    }
+    .post-file-link:focus-visible,
+    .post-body .repo-link:focus-visible {
+      outline: 2px solid var(--fg);
+      outline-offset: 2px;
+    }
 
     .final-note {
       color: var(--muted);
@@ -279,10 +297,10 @@
           <p class="post-excerpt">Apple cut off a cluster of MobileContainerManager sandbox escapes in one beta. I am releasing the Objective-C PoCs and short writeups instead of letting them disappear with the patch.</p>
 
           <div class="post-files">
-            <a class="post-file-link" href="https://github.com/0xjohnnydev/MobileHouseArrest-PoC" target="_blank" rel="noopener">MobileHouseArrest</a>
-            <a class="post-file-link" href="https://github.com/0xjohnnydev/Geod-MCM-PoC" target="_blank" rel="noopener">geod / MCM</a>
-            <a class="post-file-link" href="https://github.com/0xjohnnydev/InstallCoordination-PoC" target="_blank" rel="noopener">InstallCoordination</a>
-            <a class="post-file-link" href="https://github.com/0xjohnnydev/CFPrefsZeroFile-PoC" target="_blank" rel="noopener">cfprefsd</a>
+            <a class="post-file-link" href="https://github.com/0xjohnnydev/MobileHouseArrest-PoC" target="_blank" rel="noopener">MobileHouseArrest PoC &#8599;</a>
+            <a class="post-file-link" href="https://github.com/0xjohnnydev/Geod-MCM-PoC" target="_blank" rel="noopener">geod / MCM PoC &#8599;</a>
+            <a class="post-file-link" href="https://github.com/0xjohnnydev/InstallCoordination-PoC" target="_blank" rel="noopener">InstallCoordination PoC &#8599;</a>
+            <a class="post-file-link" href="https://github.com/0xjohnnydev/CFPrefsZeroFile-PoC" target="_blank" rel="noopener">cfprefsd PoC &#8599;</a>
           </div>
         </div>
 
@@ -311,7 +329,7 @@
               <span class="paths">/private/var/mobile/Containers/Data/Application/&lt;UUID&gt;/
 /private/var/mobile/Containers/Shared/AppGroup/&lt;UUID&gt;/</span>
               <p>This included the Notes app group and its <code>NoteStore.sqlite</code> database, making it direct access to sensitive user note data. The repository also covers the separate class-13 route to the fixed MobileGestalt cache directory.</p>
-              <a class="repo-link" href="https://github.com/0xjohnnydev/MobileHouseArrest-PoC" target="_blank" rel="noopener">0xjohnnydev/MobileHouseArrest-PoC &rarr;</a>
+              <a class="repo-link" href="https://github.com/0xjohnnydev/MobileHouseArrest-PoC" target="_blank" rel="noopener">View MobileHouseArrest PoC on GitHub <span aria-hidden="true">&#8599;</span></a>
             </section>
 
             <section class="bug-card">
@@ -323,7 +341,7 @@
               <span class="paths">/private/var/containers/Shared/SystemGroup/systemgroup.com.apple.mobilegestaltcache/Library/Caches/
 /private/var/containers/Shared/SystemGroup/systemgroup.com.apple.mobilegestaltcache/Library/Caches/com.apple.MobileGestalt.plist</span>
               <p>The result was read/write access to the fixed MobileGestalt cache directory and its live plist, not arbitrary filesystem access.</p>
-              <a class="repo-link" href="https://github.com/0xjohnnydev/Geod-MCM-PoC" target="_blank" rel="noopener">0xjohnnydev/Geod-MCM-PoC &rarr;</a>
+              <a class="repo-link" href="https://github.com/0xjohnnydev/Geod-MCM-PoC" target="_blank" rel="noopener">View geod / MCM PoC on GitHub <span aria-hidden="true">&#8599;</span></a>
             </section>
 
             <section class="bug-card">
@@ -336,7 +354,7 @@
 .../Library/InstallCoordination/DataPromises/
 .../Library/InstallCoordination/Coordinators/</span>
               <p>Beta 5 blocks the known normal-app entry. The persisted-graph trust and final-symlink behavior remain in the daemon, but this route can no longer reach their state files.</p>
-              <a class="repo-link" href="https://github.com/0xjohnnydev/InstallCoordination-PoC" target="_blank" rel="noopener">0xjohnnydev/InstallCoordination-PoC &rarr;</a>
+              <a class="repo-link" href="https://github.com/0xjohnnydev/InstallCoordination-PoC" target="_blank" rel="noopener">View InstallCoordination PoC on GitHub <span aria-hidden="true">&#8599;</span></a>
             </section>
 
             <section class="bug-card">
@@ -347,7 +365,7 @@
               <p>A raw-container path race and a final-symlink mismatch make the system preferences daemon create one selected missing file. The retained file is empty. The primitive cannot replace or truncate an existing file, and it does not control the new file&rsquo;s contents.</p>
               <span class="paths">selected missing pathname &rarr; new 0644, zero-byte file</span>
               <p>The relevant logic is still present in the iOS 27 beta 5 CoreFoundation image. Runtime confirmation on that exact build is still pending.</p>
-              <a class="repo-link" href="https://github.com/0xjohnnydev/CFPrefsZeroFile-PoC" target="_blank" rel="noopener">0xjohnnydev/CFPrefsZeroFile-PoC &rarr;</a>
+              <a class="repo-link" href="https://github.com/0xjohnnydev/CFPrefsZeroFile-PoC" target="_blank" rel="noopener">View cfprefsd PoC on GitHub <span aria-hidden="true">&#8599;</span></a>
             </section>
 
           </div>
