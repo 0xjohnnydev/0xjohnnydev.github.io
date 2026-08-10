@@ -1,0 +1,365 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <title>The iOS 27 Beta 5 Red Wedding — 0xjohnny</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <meta name="description" content="Four iOS sandbox escape and MobileGestalt PoCs released after Apple patched the main MobileContainerManager routes in iOS 27 beta 5.">
+  <meta name="theme-color" media="(prefers-color-scheme: light)" content="#ffffff">
+  <meta name="theme-color" media="(prefers-color-scheme: dark)" content="#0a0a0a">
+
+  <meta property="og:title" content="The iOS 27 Beta 5 Red Wedding">
+  <meta property="og:description" content="Four sandbox escape and MobileGestalt PoCs, their paths, and what survived iOS 27 beta 5.">
+  <meta property="og:type" content="article">
+  <meta property="og:url" content="https://0xjohnnydev.github.io/blog/ios27-red-wedding.html">
+  <meta property="og:image" content="https://0xjohnnydev.github.io/blog/assets/ios27-red-wedding/red-wedding.png">
+
+  <meta name="twitter:card" content="summary_large_image">
+  <meta name="twitter:site" content="@0xjohnny">
+  <meta name="twitter:title" content="The iOS 27 Beta 5 Red Wedding">
+  <meta name="twitter:description" content="Four sandbox escape and MobileGestalt PoCs, their paths, and what survived iOS 27 beta 5.">
+  <meta name="twitter:image" content="https://0xjohnnydev.github.io/blog/assets/ios27-red-wedding/red-wedding.png">
+
+  <link rel="icon" href="../logo.png" type="image/png">
+
+  <style>
+    :root {
+      --bg: #ffffff;
+      --fg: #0a0a0a;
+      --muted: #71717a;
+      --border: #e5e5e7;
+      --accent: rgba(0, 0, 0, 0.045);
+      --accent-strong: rgba(0, 0, 0, 0.08);
+      --code-bg: #f4f4f5;
+      --patched-bg: #f4f4f5;
+      --patched-fg: #52525b;
+      --alive-bg: #ecfdf3;
+      --alive-fg: #166534;
+      --font-sans: "SF Pro Display", "SF Pro Text", -apple-system, BlinkMacSystemFont, "Inter", "Segoe UI", Roboto, sans-serif;
+      --font-mono: ui-monospace, "SF Mono", Menlo, Consolas, monospace;
+    }
+
+    @media (prefers-color-scheme: dark) {
+      :root {
+        --bg: #0a0a0a;
+        --fg: #fafafa;
+        --muted: #a1a1aa;
+        --border: #27272a;
+        --accent: rgba(255, 255, 255, 0.06);
+        --accent-strong: rgba(255, 255, 255, 0.1);
+        --code-bg: #18181b;
+        --patched-bg: #27272a;
+        --patched-fg: #d4d4d8;
+        --alive-bg: #10291c;
+        --alive-fg: #86efac;
+      }
+    }
+
+    * { margin: 0; padding: 0; box-sizing: border-box; }
+    html { scroll-behavior: smooth; }
+
+    body {
+      font-family: var(--font-sans);
+      background: var(--bg);
+      color: var(--fg);
+      min-height: 100vh;
+      line-height: 1.5;
+      -webkit-font-smoothing: antialiased;
+      -moz-osx-font-smoothing: grayscale;
+      text-rendering: optimizeLegibility;
+      font-feature-settings: "ss01", "cv01";
+    }
+
+    a { color: inherit; text-decoration: none; }
+    img { display: block; max-width: 100%; }
+
+    main { display: flex; min-height: 100vh; justify-content: center; }
+    .shell { width: 100%; }
+    .container {
+      max-width: 42rem;
+      margin: 0 auto;
+      padding: 6rem 1.5rem 4rem;
+    }
+
+    .back-link {
+      display: inline-flex;
+      align-items: center;
+      gap: 0.375rem;
+      color: var(--muted);
+      font-size: 0.875rem;
+      padding: 0.4rem 0.5rem 0.4rem 0;
+      margin-bottom: 1.25rem;
+      transition: color 120ms ease;
+    }
+    .back-link:hover { color: var(--fg); }
+
+    .post-header { display: flex; flex-direction: column; gap: 0.5rem; }
+    .post-title {
+      font-size: 1.875rem;
+      font-weight: 500;
+      letter-spacing: -0.01em;
+      text-wrap: balance;
+    }
+    .post-meta {
+      display: flex;
+      align-items: center;
+      gap: 0.5rem;
+      font-size: 0.875rem;
+      color: var(--muted);
+      font-variant-numeric: tabular-nums;
+      flex-wrap: wrap;
+    }
+    .post-meta-sep { opacity: 0.5; }
+    .post-excerpt {
+      color: var(--muted);
+      font-size: 1rem;
+      margin-top: 0.75rem;
+      text-wrap: pretty;
+    }
+
+    .post-files {
+      display: flex;
+      gap: 0.5rem;
+      margin-top: 1.25rem;
+      flex-wrap: wrap;
+    }
+    .post-file-link {
+      display: inline-flex;
+      align-items: center;
+      gap: 0.375rem;
+      padding: 0.4rem 0.75rem;
+      border-radius: 6px;
+      background: var(--accent);
+      font-family: var(--font-mono);
+      font-size: 0.76rem;
+      font-weight: 500;
+      transition: background 120ms ease;
+    }
+    .post-file-link:hover { background: var(--accent-strong); }
+
+    .hero {
+      margin-top: 2rem;
+    }
+    .hero img {
+      width: 100%;
+      aspect-ratio: 16 / 9;
+      object-fit: cover;
+      border-radius: 10px;
+      border: 1px solid var(--border);
+    }
+    .hero figcaption {
+      color: var(--muted);
+      font-size: 0.75rem;
+      margin-top: 0.5rem;
+      text-align: right;
+    }
+
+    .post-divider {
+      border: none;
+      border-top: 1px solid var(--border);
+      margin: 2.5rem 0 2rem;
+    }
+
+    .post-body {
+      font-size: 0.95rem;
+      line-height: 1.65;
+      color: var(--fg);
+    }
+    .post-body > h2 {
+      color: var(--muted);
+      font-size: 0.875rem;
+      font-weight: 400;
+      margin: 3rem 0 1rem;
+    }
+    .post-body > h2:first-child { margin-top: 0; }
+    .post-body p { margin-bottom: 0.85rem; }
+    .post-body strong { font-weight: 500; }
+    .post-body code {
+      font-family: var(--font-mono);
+      font-size: 0.85em;
+      background: var(--code-bg);
+      padding: 0.1em 0.35em;
+      border-radius: 4px;
+    }
+    .post-body a {
+      box-shadow: 0 1px 0 var(--border);
+      padding-bottom: 1px;
+    }
+    .post-body a:hover { box-shadow: 0 1px 0 var(--fg); }
+
+    .bug-list {
+      display: flex;
+      flex-direction: column;
+      margin-top: 0.25rem;
+    }
+    .bug-card {
+      padding: 1.5rem 0;
+      border-top: 1px solid var(--border);
+    }
+    .bug-card:last-child { border-bottom: 1px solid var(--border); }
+    .bug-head {
+      display: flex;
+      justify-content: space-between;
+      align-items: flex-start;
+      gap: 1rem;
+      margin-bottom: 0.75rem;
+    }
+    .bug-title {
+      font-size: 1rem;
+      font-weight: 500;
+      line-height: 1.35;
+    }
+    .status {
+      display: inline-flex;
+      flex-shrink: 0;
+      align-items: center;
+      padding: 0.2rem 0.5rem;
+      border-radius: 999px;
+      font-family: var(--font-mono);
+      font-size: 0.68rem;
+      font-weight: 600;
+      text-transform: uppercase;
+      letter-spacing: 0.035em;
+    }
+    .status.patched { background: var(--patched-bg); color: var(--patched-fg); }
+    .status.alive { background: var(--alive-bg); color: var(--alive-fg); }
+    .bug-card p { color: color-mix(in srgb, var(--fg) 88%, var(--muted)); }
+    .paths {
+      display: block;
+      margin: 0.85rem 0;
+      padding: 0.75rem;
+      border-radius: 6px;
+      background: var(--code-bg);
+      font-family: var(--font-mono);
+      font-size: 0.75rem;
+      line-height: 1.65;
+      overflow-wrap: anywhere;
+    }
+    .repo-link {
+      display: inline-flex;
+      align-items: center;
+      gap: 0.35rem;
+      margin-top: 0.15rem;
+      font-family: var(--font-mono);
+      font-size: 0.78rem;
+      box-shadow: 0 1px 0 var(--border);
+      padding-bottom: 1px;
+    }
+    .repo-link:hover { box-shadow: 0 1px 0 var(--fg); }
+
+    .final-note {
+      color: var(--muted);
+      font-size: 0.875rem;
+      margin-top: 1.5rem;
+    }
+
+    @media (max-width: 540px) {
+      .container { padding: 3rem 1.25rem 3rem; }
+      .post-title { font-size: 1.5rem; }
+      .bug-head { flex-direction: column; gap: 0.5rem; }
+    }
+  </style>
+</head>
+<body>
+  <main>
+    <div class="shell">
+      <div class="container">
+
+        <a class="back-link" href="/">&lsaquo; back</a>
+
+        <div class="post-header">
+          <h1 class="post-title">The iOS 27 Beta 5 Red Wedding</h1>
+          <div class="post-meta">
+            <span>Aug 2026</span>
+            <span class="post-meta-sep">/</span>
+            <span>iOS 27 beta 5</span>
+            <span class="post-meta-sep">/</span>
+            <code>24A5408d</code>
+          </div>
+          <p class="post-excerpt">Apple cut off a cluster of MobileContainerManager sandbox escapes in one beta. I am releasing the Objective-C PoCs and short writeups instead of letting them disappear with the patch.</p>
+
+          <div class="post-files">
+            <a class="post-file-link" href="https://github.com/0xjohnnydev/MobileHouseArrest-PoC" target="_blank" rel="noopener">MobileHouseArrest</a>
+            <a class="post-file-link" href="https://github.com/0xjohnnydev/Geod-MCM-PoC" target="_blank" rel="noopener">geod / MCM</a>
+            <a class="post-file-link" href="https://github.com/0xjohnnydev/InstallCoordination-PoC" target="_blank" rel="noopener">InstallCoordination</a>
+            <a class="post-file-link" href="https://github.com/0xjohnnydev/CFPrefsZeroFile-PoC" target="_blank" rel="noopener">cfprefsd</a>
+          </div>
+        </div>
+
+        <figure class="hero">
+          <img src="assets/ios27-red-wedding/red-wedding.png" alt="A Red Wedding banquet scene with Tim Cook raising a goblet">
+          <figcaption>iOS 27 beta 5, apparently.</figcaption>
+        </figure>
+
+        <hr class="post-divider">
+
+        <div class="post-body">
+
+          <h2>What happened</h2>
+          <p>iOS 27 beta 5 was a Red Wedding for the sandbox escape and MobileGestalt routes I had been testing. The main MobileContainerManager entry points were all blocked in build <code>24A5408d</code>. My guess is that Mythos helped Apple find the cluster.</p>
+          <p>The fixes landed before I published the work, so here are the clean PoCs, the request shapes, and the exact paths each bug reached.</p>
+
+          <h2>The bugs</h2>
+          <div class="bug-list">
+
+            <section class="bug-card">
+              <div class="bug-head">
+                <h3 class="bug-title">MobileHouseArrest identity trust</h3>
+                <span class="status patched">patched</span>
+              </div>
+              <p>MobileContainerManager trusted the caller&rsquo;s CodeDirectory identifier as an authorization key. A development-signed app using <code>com.apple.mobile.MobileHouseArrest</code> could request foreign class-2 app containers and class-7 app groups.</p>
+              <span class="paths">/private/var/mobile/Containers/Data/Application/&lt;UUID&gt;/
+/private/var/mobile/Containers/Shared/AppGroup/&lt;UUID&gt;/</span>
+              <p>This included the Notes app group and its <code>NoteStore.sqlite</code> database, making it direct access to sensitive user note data. The repository also covers the separate class-13 route to the fixed MobileGestalt cache directory.</p>
+              <a class="repo-link" href="https://github.com/0xjohnnydev/MobileHouseArrest-PoC" target="_blank" rel="noopener">0xjohnnydev/MobileHouseArrest-PoC &rarr;</a>
+            </section>
+
+            <section class="bug-card">
+              <div class="bug-head">
+                <h3 class="bug-title"><code>geod</code> class-12 traversal</h3>
+                <span class="status patched">patched</span>
+              </div>
+              <p>Class 12 treated <code>com.apple.geod</code> as a built-in allowed container. An unchecked <code>partDomain</code> then redirected its read/write sandbox extension into the MobileGestalt system group.</p>
+              <span class="paths">/private/var/containers/Shared/SystemGroup/systemgroup.com.apple.mobilegestaltcache/Library/Caches/
+/private/var/containers/Shared/SystemGroup/systemgroup.com.apple.mobilegestaltcache/Library/Caches/com.apple.MobileGestalt.plist</span>
+              <p>The result was read/write access to the fixed MobileGestalt cache directory and its live plist, not arbitrary filesystem access.</p>
+              <a class="repo-link" href="https://github.com/0xjohnnydev/Geod-MCM-PoC" target="_blank" rel="noopener">0xjohnnydev/Geod-MCM-PoC &rarr;</a>
+            </section>
+
+            <section class="bug-card">
+              <div class="bug-head">
+                <h3 class="bug-title">InstallCoordination persisted state</h3>
+                <span class="status patched">entry patched</span>
+              </div>
+              <p>A class-13 authorization gap and <code>partDomain</code> traversal exposed the state used by <code>installcoordinationd</code>. An app could place a promise graph into those directories. The daemon restored the graph and followed the final localization symlink while materializing <code>InfoPlist.strings</code>.</p>
+              <span class="paths">.../Library/InstallCoordination/PromiseStaging/
+.../Library/InstallCoordination/DataPromises/
+.../Library/InstallCoordination/Coordinators/</span>
+              <p>Beta 5 blocks the known normal-app entry. The persisted-graph trust and final-symlink behavior remain in the daemon, but this route can no longer reach their state files.</p>
+              <a class="repo-link" href="https://github.com/0xjohnnydev/InstallCoordination-PoC" target="_blank" rel="noopener">0xjohnnydev/InstallCoordination-PoC &rarr;</a>
+            </section>
+
+            <section class="bug-card">
+              <div class="bug-head">
+                <h3 class="bug-title"><code>cfprefsd</code> missing-file creation</h3>
+                <span class="status alive">still present</span>
+              </div>
+              <p>A raw-container path race and a final-symlink mismatch make the system preferences daemon create one selected missing file. The retained file is empty. The primitive cannot replace or truncate an existing file, and it does not control the new file&rsquo;s contents.</p>
+              <span class="paths">selected missing pathname &rarr; new 0644, zero-byte file</span>
+              <p>The relevant logic is still present in the iOS 27 beta 5 CoreFoundation image. Runtime confirmation on that exact build is still pending.</p>
+              <a class="repo-link" href="https://github.com/0xjohnnydev/CFPrefsZeroFile-PoC" target="_blank" rel="noopener">0xjohnnydev/CFPrefsZeroFile-PoC &rarr;</a>
+            </section>
+
+          </div>
+
+          <h2>Version status</h2>
+          <p>The MobileHouseArrest, class-13, <code>geod</code>, and known InstallCoordination entry routes are patched in iOS 27 beta 5. The <code>cfprefsd</code> logic still appears present. I have not verified iOS 26.6.1.</p>
+          <p class="final-note">Each repository contains a short writeup and minimal Objective-C source for the relevant request or chain.</p>
+
+        </div>
+
+      </div>
+    </div>
+  </main>
+</body>
+</html>
