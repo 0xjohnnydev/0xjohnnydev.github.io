@@ -21,7 +21,7 @@ fi
 # — CONFIGURATION — adjust these to your needs:
 DEB_DIR="debs"                  # where your .deb files live
 OUTPUT_DIR="."                  # place all metadata in repo root
-GPG_KEY="DFCAC433302550D6"       # your GPG signing key ID
+GPG_KEY="766E4907CF271B91"       # your GPG signing key ID
 
 # — PREPARE OUTPUT DIRECTORIES —
 # mkdir -p "$DIST_DIR/$COMPONENT/binary-$ARCH"
@@ -42,13 +42,13 @@ if command -v apt-ftparchive >/dev/null 2>&1; then
 else
   echo "apt-ftparchive not found; generating minimal Release file..."
   cat > "$OUTPUT_DIR/Release" <<EOF
-Origin: ZeroXJF Repo
-Label: ZeroXJF Repo
+Origin: 0xjohnny Repo
+Label: 0xjohnny Repo
 Suite: stable
 Version: 1.0
 Architectures: iphoneos-arm iphoneos-arm64 iphoneos-arm64e
 Components: main
-Description: zeroxjf's personal jailbreak repo
+Description: 0xjohnny's personal jailbreak repo
 EOF
 
   # — Append checksums to Release —

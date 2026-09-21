@@ -1,7 +1,7 @@
 Package: com.anthopak.springcuts-rootless
 Version: 1.5.2
 Architecture: iphoneos-arm64
-Maintainer: zeroxjf
+Maintainer: 0xjohnny
 Depends: firmware (>=14.0), mobilesubstrate
 Filename: debs/com.anthopak.springcuts-rootless_1.5.2_iphoneos-arm64.deb
 Size: 40268
@@ -35,7 +35,7 @@ Description: Run iOS Shortcuts from SSH, the command line, or RemoteCompanion wi
  - Rootless path detection fix
  .
  iOS 14.0 - 17.0 | arm64 / arm64e | Rootless
- Original tweak by AnthoPak | Patched for NathanLR by zeroxjf
+ Original tweak by AnthoPak | Patched for NathanLR by 0xjohnny
 Author: AnthoPak <anthopakdev@gmail.com>
 Icon: https://repo.anthopak.dev/assets/com.anthopak.springcuts-rootless/icon.png
 Name: SpringCuts (Rootless)
@@ -44,7 +44,7 @@ Sileodepiction: https://zeroxjf.github.io/depictions/com.anthopak.springcuts-roo
 Package: com.zeroxjf.bartype
 Version: 1.1.1
 Architecture: iphoneos-arm64
-Maintainer: zeroxjf <zeroxjf@repo>
+Maintainer: 0xjohnny <0xjohnny@repo>
 Installed-Size: 532
 Depends: mobilesubstrate (>= 0.9.5000), preferenceloader (>= 2.2.3), firmware (>= 14.0)
 Filename: debs/com.zeroxjf.bartype_1.1.1_iphoneos-arm64.deb
@@ -73,15 +73,15 @@ Description: The prodigal son of TypeCentury. A system-wide typing indicator for
  - System-wide iMessage typing indicator with banner UI
  .
  iOS 16.0 - 17.0 | arm64 / arm64e | Rootless (NathanLR)
- By zeroxjf
-Author: zeroxjf
+ By 0xjohnny
+Author: 0xjohnny
 Name: TypeMillennium
 Sileodepiction: https://zeroxjf.github.io/depictions/com.zeroxjf.bartype.json
 
 Package: com.zeroxjf.zoom5x
 Version: 1.0.0
 Architecture: iphoneos-arm64
-Maintainer: zeroxjf
+Maintainer: 0xjohnny
 Installed-Size: 168
 Depends: mobilesubstrate (>= 0.9.5000), firmware (>= 14.0)
 Filename: debs/com.zeroxjf.zoom5x_1.0.0_iphoneos-arm64.deb
@@ -92,7 +92,7 @@ SHA256: 4e830e893ad5a5c38889b3bb9f5d113d43e228ddab39ce5841a8481028761f44
 Section: Tweaks
 Homepage: https://zeroxjf.github.io
 Description: Adds a 5x zoom button to the Camera app zoom platter, matching the look and feel of the native 0.5x, 1x, 2x, 3x buttons. On iPhone 15 Pro Max (5x optical), this is a no-op since 5x already exists natively. On iPhone 14 Pro, 15 Pro, and earlier, the 5x is digital zoom.
-Author: zeroxjf
+Author: 0xjohnny
 Name: Zoom5x
 Sileodepiction: https://zeroxjf.github.io/depictions/com.zeroxjf.zoom5x.json
 

@@ -1,17 +1,17 @@
-Origin: ZeroXJF Repo
-Label: ZeroXJF Repo
+Origin: 0xjohnny Repo
+Label: 0xjohnny Repo
 Suite: stable
 Version: 1.0
 Architectures: iphoneos-arm iphoneos-arm64 iphoneos-arm64e
 Components: main
-Description: zeroxjf's personal jailbreak repo
+Description: 0xjohnny's personal jailbreak repo
 MD5Sum:
- 59736c3f409c7bb2d9046bb9f68135bf 4602 Packages
- febf8341d58839c5b4eb6a5edfefc947 2047 Packages.gz
- 5bca9c05fe1659e6f4a08991bf2dc385 2161 Packages.bz2
- 94b5447bcade547db0c2b2ed892c4bbc 2088 Packages.xz
+ 1d6db0ff4a0afc470e5e8574beac9201 4610 Packages
+ 01113a92c69144ddbaec6b7489d9c163 2042 Packages.gz
+ 38bd200884301c761e780d6e669e434a 2174 Packages.bz2
+ 877f85aeb7d4be73ac24946e873093b5 2084 Packages.xz
 SHA256:
- 1781e29fc1ae268edf5ff1dfc18eb464c965e5a3cfd50fb6c2d07d96b1bc63b8 4602 Packages
- 93569a8733b291ad7257e6ee3f6179475d0f7d3a42e7426791aa1f1224831a19 2047 Packages.gz
- 49666c550b61f912e603dac93f36893a74f91f97a4354376eb057cc19005c9b8 2161 Packages.bz2
- de1142dc520d2cbda6a0bf8732e221bfb6a58069ed6062abc7832def198ec07f 2088 Packages.xz
+ 2768c71a61d9e711c65565ae8dc3e9536f2ca867655919ce1a6d84e79c0cad2f 4610 Packages
+ 8800e8f621bf73b8d9155c63b8538c3126f2aea22c9df5ef44d5c4e0fa422de9 2042 Packages.gz
+ 0ccbb78c85a13a4a6e4623d04da28b347adb93dc03bc88b8e3c6f89d84e44f27 2174 Packages.bz2
+ 851d4b062422c06b5d17e2065e5c6ac4016f1a212dd9b9d43553d2b747cf15b2 2084 Packages.xz
