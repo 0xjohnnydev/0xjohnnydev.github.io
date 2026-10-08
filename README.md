@@ -1,8 +1,8 @@
 # JF Tech LLC
 
-JF Tech LLC is an independent Apple security research company run by Johnny (**@0xjohnny**).
+I'm Johnny (**@0xjohnny**). I run JF Tech LLC, an independent security research company focused on iOS and macOS.
 
-Johnny researches vulnerabilities in iOS and macOS, tests security fixes, and reports issues to Apple using his own devices and local test environments. The research below was carried out through JF Tech LLC; Apple credits it under Johnny's name.
+I find vulnerabilities, test security fixes, and report issues to Apple using my own devices and local test environments. I carried out the research below through JF Tech LLC; Apple credits it under my name.
 
 ## Published research
 
