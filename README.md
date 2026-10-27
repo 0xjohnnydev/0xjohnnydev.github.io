@@ -15,6 +15,8 @@ The links below are Apple's official security advisories.
 | CVE-2026-28992 | [iOS 26.5 / IOHIDFamily](https://support.apple.com/en-us/127110) | Individual credit |
 | CVE-2026-43816 | [iOS 26.6 / Kernel](https://support.apple.com/en-us/128066) | Shared credit |
 | CVE-2026-64729 | [iOS 26.6 / Kernel](https://support.apple.com/en-us/128066) | Shared credit |
+| CVE-2026-64691 | [macOS Tahoe 26.6 / GPU Drivers](https://support.apple.com/en-us/128067) | Shared credit |
+| CVE-2026-112612 | [iOS 27.2 / Accounts](https://support.apple.com/en-us/149230) | Shared credit |
 
 ## Contact and website
 
